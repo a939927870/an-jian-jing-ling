@@ -86,7 +86,7 @@ Function TenKindAnimalCount(Line, Rounds) //当前在内，包括之前a-1局的
         //    TracePrint "-----------第"& Line &"局结束了，动物结果以及总的数量分布，显示如上-------------------------"
         Line = Line - 1
     Next
-    TracePrint "狮子:" & Num(0) & "  熊猫:" & Num(1) & "  猴子:" & Num(2) & "  兔子:" & Num(3)
+    TracePrint "狮子:" & Num(0) & "       熊猫:" & Num(1) & "         猴子:" & Num(2) & "       兔子:" & Num(3)
     str = "狮子:" & Round((Num(0) / Total) * 100, 2) & " %" & "  熊猫:" & Round((Num(1) / Total) * 100, 2) & " %" & "  猴子:" & Round((Num(2) / Total) * 100, 2) & " %" & "  兔子:" & Round((Num(3) / Total) * 100, 2) & " %"
     TracePrint str
     TenKindAnimalCount = Num
