@@ -86,6 +86,7 @@ Function TenKindAnimalCount(Line, Rounds) //当前在内，包括之前a-1局的
  //   TracePrint "狮子:" & Num(0) & "       熊猫:" & Num(1) & "         猴子:" & Num(2) & "       兔子:" & Num(3)
     str = "狮子:" & Round((Num(0) / Total) * 100, 2) & " %" & "  熊猫:" & Round((Num(1) / Total) * 100, 2) & " %" & "  猴子:" & Round((Num(2) / Total) * 100, 2) & " %" & "  兔子:" & Round((Num(3) / Total) * 100, 2) & " %"
     TracePrint str
+    Call Plugin.File.WriteFileEx("C:\数据输出1.txt", str)
     TenKindAnimalCount = Num
     Rem theend
 End Function 
