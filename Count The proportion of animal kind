@@ -4,49 +4,14 @@ Row = 15		//第十五列开始读取数据
 ExcelPage = 1	//Excel 第一页
 Line = 1		//Excel 第一行
 Call Plugin.Office.OpenXls("C:\数据1.xls")
-/*
-//每一局检测结果，每一局结果有1-4个，对每个结果都从Kind里面的4种动物进行判断，如果有Kind里的动物，就记录下来。
-For 1690
-    Row = 15
-    For 4
-        Animal = Plugin.Office.ReadXls(ExcelPage, Line, Row)
-        i = 0
-        For 4
-            If InStr(Animal, Kind(i)) > 0 Then 
-                //在这里计算开奖动物的每个占比的比例
-                Num(i) = Num(i) + 1
-                TracePrint Kind(i)
-            Else 
-            End If
-            i = i + 1
-        Next
-        Row = Row + 1
-    Next
-    //数量分布情况
-    TracePrint "狮子:" & Num(0) & "  熊猫:" & Num(1) & "  猴子:" & Num(2) & "  兔子:" & Num(3)
-    //比例分布情况
-    Total = Num(0) + Num(1) + Num(2) + Num(3)
-    str = "狮子:" & Round((Num(0) / Total) * 100, 2) & " %" & "  熊猫:" & Round((Num(1) / Total) * 100, 2) & " %" & "  猴子:" & Round((Num(2) / Total) * 100, 2) & " %" & "  兔子:" & Round((Num(3) / Total) * 100, 2) & " %"
-    TracePrint str
-    Call Plugin.File.WriteFileEx("C:\数据输出1.txt", str)
-    TracePrint "-----------第"& Line &"局结束了，动物结果以及总的数量分布，显示如上-------------------------"
-    Line = Line + 1
-Next
-*/
+
 x = 10
 times = 100//总的局数
-/**/
+
 For times - x
 	Num = TenKindAnimalCount(x, 10)
-
 	x = x + 1
 Next
-
-/*
-//第13行，检测包括这行在内的之前10局动物分布比例
-Num = TenKindAnimalCount(19, 10)
-TracePrint Num(0)
-*/
 
 //Line是当前excel行数，Rounds是要统计的总行数
 Function TenKindAnimalCount(Line, Rounds) //当前在内，包括之前a-1局的每种动物总数。比如a=10，那么就是加上当前局在内的10局动物数量
@@ -55,7 +20,7 @@ Function TenKindAnimalCount(Line, Rounds) //当前在内，包括之前a-1局的
         TracePrint "Line < " & x
         Goto theend
     End If
-    /* */
+
     //每一局检测结果，每一局结果有1-4个，对每个结果都从Kind里面的4种动物进行判断，如果有Kind里的动物，就记录下来。
     For Rounds
         Row = 15
@@ -66,24 +31,18 @@ Function TenKindAnimalCount(Line, Rounds) //当前在内，包括之前a-1局的
                 If InStr(Animal, Kind(i)) > 0 Then 
                     //在这里计算开奖动物的每个占比的比例
                     Num(i) = Num(i) + 1
-                    //         TracePrint Kind(i)
                 Else 
                 End If
                 i = i + 1
             Next
             Row = Row + 1
         Next
-        //数量分布情况
-        //    TracePrint "狮子:" & Num(0) & "  熊猫:" & Num(1) & "  猴子:" & Num(2) & "  兔子:" & Num(3)
+
         //比例分布情况
         Total = Num(0) + Num(1) + Num(2) + Num(3)
-        //     str = "狮子:" & Round((Num(0) / Total) * 100, 2) & " %" & "  熊猫:" & Round((Num(1) / Total) * 100, 2) & " %" & "  猴子:" & Round((Num(2) / Total) * 100, 2) & " %" & "  兔子:" & Round((Num(3) / Total) * 100, 2) & " %"
-        //    TracePrint str
-        //    Call Plugin.File.WriteFileEx("C:\数据输出1.txt", str)
-        //    TracePrint "-----------第"& Line &"局结束了，动物结果以及总的数量分布，显示如上-------------------------"
         Line = Line - 1
     Next
- //   TracePrint "狮子:" & Num(0) & "       熊猫:" & Num(1) & "         猴子:" & Num(2) & "       兔子:" & Num(3)
+ 
     str = "狮子:" & Round((Num(0) / Total) * 100, 2) & " %" & "  熊猫:" & Round((Num(1) / Total) * 100, 2) & " %" & "  猴子:" & Round((Num(2) / Total) * 100, 2) & " %" & "  兔子:" & Round((Num(3) / Total) * 100, 2) & " %"
     TracePrint str
     Call Plugin.File.WriteFileEx("C:\数据输出1.txt", str)
