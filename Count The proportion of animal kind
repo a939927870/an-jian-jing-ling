@@ -36,7 +36,7 @@ Next
 x = 10
 times = 100//总的局数
 /**/
-For times - 10
+For times - x
 	Num = TenKindAnimalCount(x, 10)
 
 	x = x + 1
