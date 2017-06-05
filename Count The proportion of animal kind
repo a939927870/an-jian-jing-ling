@@ -51,8 +51,8 @@ TracePrint Num(0)
 //Line是当前excel行数，Rounds是要统计的总行数
 Function TenKindAnimalCount(Line, Rounds) //当前在内，包括之前a-1局的每种动物总数。比如a=10，那么就是加上当前局在内的10局动物数量
     Num = Array(0, 0, 0, 0)//各种动物数量，从左到右分别是："狮子", "熊猫", "猴子", "兔子"
-    If Line < 10 Then 
-        TracePrint "Line < 10"
+    If Line < x Then 
+        TracePrint "Line < " & x
         Goto theend
     End If
     /* */
