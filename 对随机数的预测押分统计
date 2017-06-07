@@ -66,3 +66,4 @@ Next
 TracePrint "-----------测试结束！-----------"
 TracePrint "总共下注次数 Total = " & Total
 TracePrint "累计打中次数 Yes   = " & Yes
+TracePrint "盈利 = 累计打中次数 X 10 - 总共下注次数 = Yes X 10 - Total =" & Yes * 10 - Total
