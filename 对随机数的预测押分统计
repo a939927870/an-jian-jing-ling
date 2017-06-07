@@ -6,6 +6,7 @@
 押注几个，中了几个，如此循环100次，下注一个扣1分，猜中一个得10分 
 。没猜中扣一分，然后计算总得分情况。
 */
+TracePrint "-----------测试开始！-----------"
 Randomize
 //每个数字出现的累计次数，0-9
 num = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -29,14 +30,14 @@ For 100
             num(i) = num(i) + 1
             If flag(i) = 100 Then 
                 Yes = Yes + 1
-            //    TracePrint "这一局开出的是" & i & ""
+                //    TracePrint "这一局开出的是" & i & ""
                 TracePrint "恭喜！打中了！   到目前为止，已经累计打中" & Yes & "次！" 
             End If         
         End If
         i = i + 1
     Next
     If n > 10 Then //只有10局以后，才开始下注。
-//    	TracePrint "本局是第 ："& n & "> 10 局，可以下注"
+        //    	TracePrint "本局是第 ："& n & "> 10 局，可以下注"
         //初始化上一局的下注标记
         For 10
             m = 0
@@ -59,11 +60,12 @@ For 100
             x = x + 1
         Next 
     Else 
-  //      TracePrint "本局是第 ："& n & "< 10 局，还不能下注"
+        //      TracePrint "本局是第 ："& n & "< 10 局，还不能下注"
     End If
     n = n + 1
 Next
 TracePrint "-----------测试结束！-----------"
 TracePrint "总共下注次数 Total = " & Total
 TracePrint "累计打中次数 Yes   = " & Yes
-TracePrint "盈利 = 累计打中次数 X 10 - 总共下注次数 = Yes X 10 - Total =" & Yes * 10 - Total
+TracePrint "盈利 = 累计打中次数 X 10 - 总共下注次数 = Yes X 10 - Total = " & Yes * 10 - Total & " 分"
+TracePrint "盈利比率 = (盈利 / 总共下注次数) X 100% = " & Round(((Yes * 10 - Total) / Total) * 100, 2) & "%"
