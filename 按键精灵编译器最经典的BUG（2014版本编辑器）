@@ -3,6 +3,7 @@ n = 100
 num = Array(18, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 Lite = Round(（num(0) / n）, 2)
+TracePrint Lite
 
 
 /*
