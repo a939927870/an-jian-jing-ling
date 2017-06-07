@@ -66,6 +66,7 @@ For 100
 Next
 TracePrint "-----------测试结束！-----------"
 TracePrint "总共下注次数 Total = " & Total
+rat = Yes * 10 - Total  //盈利
 TracePrint "累计打中次数 Yes   = " & Yes
-TracePrint "盈利 = 累计打中次数 X 10 - 总共下注次数 = Yes X 10 - Total = " & Yes * 10 - Total & " 分"
-TracePrint "盈利比率 = (盈利 / 总共下注次数) X 100% = " & Round(((Yes * 10 - Total) / Total) * 100, 2) & "%"
+TracePrint "盈利 = 累计打中次数 X 10 - 总共下注次数 = Yes X 10 - Total = " & rat & " 分"
+TracePrint "盈利比率 = (盈利 / 总共下注次数) X 100% = " & Round((rat / Total) * 100, 2) & "%"
