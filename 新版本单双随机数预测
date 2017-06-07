@@ -1,0 +1,25 @@
+TracePrint "-----------测试开始！-----------"
+Randomize
+//每个数字出现的累计次数，0-1
+num = Array(0, 0)
+//能够出现的数字
+sed = Array(0, 1)
+//下注的数字标识
+flag = Array(- 1 , - 1 )
+d = 0
+lefttimes = 0	//左边开出次数
+n = 1		//总的统计循环次数，必须从1开始，不然后面有个（num(x) / n），分母为0，会报错
+Total = 0	//押注总次数
+Yes = 0//押中的总次数
+h = 1//运行了多少次
+For 30000
+    d = int(Rnd() * 2)	
+//    TracePrint d
+    
+    If d = 0 Then 
+    	lefttimes = lefttimes + 1
+    End If
+    n = n + 1
+Next
+TracePrint "左边开出 = " & lefttimes & " 次"
+TracePrint "左边开出 = " & n - lefttimes & " 次"
