@@ -17,20 +17,28 @@ flag = Array(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1)
 n = 1		//总的统计循环次数，必须从1开始，不然后面有个（num(x) / n），分母为0，会报错
 Total = 0	//押注总次数
 Yes = 0//押中的总次数
-IsUnderAtack = 0 //上一局是否打中标识
-For 100
+IsUnderAtack = 0//上一局是否打中标识
+h = 1//运行了多少次
+
+For 1000000
     i = 0
     IsUnderAtack = 0
     d = int(Rnd() * 10)
-    TracePrint "--------第" & n & "局开始！---------"
-    TracePrint "这一局开出的数字是 = " & d
+    
+    If (n mod 10000) = 0 Then 
+    	TracePrint "运行了" & h & "0,000次了" 
+    	h = h + 1
+    End If
+    
+//    TracePrint "--------第" & n & "局开始！---------"
+//    TracePrint "这一局开出的数字是 = " & d
     //循环10次，判断这个d是属于0-9中的哪一个数字，然后得到后就把本次出现一次累加到num里去
     For 10   
         If d = sed(i) Then 
             num(i) = num(i) + 1
             If flag(i) = 100 Then 
                 Yes = Yes + 1
-                TracePrint "恭喜！打中了！   到目前为止，已经累计打中" & Yes & "次！" 
+        //        TracePrint "恭喜！打中了！   到目前为止，已经累计打中" & Yes & "次！" 
             End If         
         End If
         i = i + 1
@@ -46,13 +54,13 @@ For 100
         
         x = 0
         //当前局总的数字输出情况：
-        TracePrint "到本局总的累计数字出现次数：(0 = " & num(0) & ")   (1 = " & num(1) & ")   (2 = " & num(2) & ")   (3 = " & num(3) & ")   (4 = " & num(4) & ")   (5 = " & num(5) & ")   (6 = " & num(6) & ")   (7 = " & num(7) & ")   (8 = " & num(8) & ")   (9 = " & num(9)&" )"
+  //      TracePrint "到本局总的累计数字出现次数：(0 = " & num(0) & ")   (1 = " & num(1) & ")   (2 = " & num(2) & ")   (3 = " & num(3) & ")   (4 = " & num(4) & ")   (5 = " & num(5) & ")   (6 = " & num(6) & ")   (7 = " & num(7) & ")   (8 = " & num(8) & ")   (9 = " & num(9)&" )"
         For 10
             //	Lite = Round((num / n) * 100, 5)
             Lite = Round((num(x) / n) * 100, 2)
-            If Lite < 10 Then //这个数字这一局的平均出现概率小于10%，因此它是下注对象，标记为1
+            If Lite < 1 Then //这个数字这一局的平均出现概率小于10%，因此它是下注对象，标记为1
                 flag(x) = 100
-                TracePrint "这一局的下注对象是" & x & "概率为 = " & Lite & "%"
+       //         TracePrint "这一局的下注对象是" & x & "概率为 = " & Lite & "%"
                 Total = Total + 1
             End If
             //   TracePrint "Lite = " & Lite & " ------ num(" & x & ") = " & num(x)
@@ -61,7 +69,7 @@ For 100
     Else 
         //      TracePrint "本局是第 ："& n & "< 10 局，还不能下注"
     End If
-    TracePrint "--------第" & n & "局结束！---------"
+ //   TracePrint "--------第" & n & "局结束！---------"
     n = n + 1
 Next
 TracePrint "-----------测试结束！-----------"
