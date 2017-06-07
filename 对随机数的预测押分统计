@@ -63,5 +63,6 @@ For 100
     End If
     n = n + 1
 Next
+TracePrint "-----------测试结束！-----------"
 TracePrint "总共下注次数 Total = " & Total
 TracePrint "累计打中次数 Yes   = " & Yes
