@@ -15,6 +15,11 @@ TotalRight = 0	//右边押注总次数
 Match = 0		//两者追平的次数
 h = 1//运行了多少次
 
+Dim LeftHub(10000)
+Dim RightHub(10000)
+
+Call Plugin.File.DeleteFile("C:\数据输出.txt")
+
 For 300000
     d = int(Rnd() * 2)
     
@@ -27,18 +32,17 @@ For 300000
     str = "现在是第 " & n &" 局" & "左边出现次数 = " & Lefttimes & "右边出现次数 = " & Righttimes & "  左边 - 右边 = " &Lefttimes - Righttimes & " 次"
  // 
     Call Plugin.File.WriteFileEx("C:\数据输出.txt", str)
-    /**/
 
-    If Righttimes - Lefttimes > 5 Then //如果右边比左边多5个
+
+    If Righttimes - Lefttimes > 0 Then //如果右边比左边多5个
         TotalLeft = TotalLeft + 1
-    Elseif Lefttimes - Righttimes > 5 Then //如果左边比右边多5个
+    Elseif Lefttimes - Righttimes > 0 Then //如果左边比右边多5个
         TotalRight = TotalRight + 1
     Elseif Lefttimes - Righttimes = 0 Then    
         Match = Match + 1//两者数量一致，追平了
         TracePrint "现在是第 " & n & " 局，   第 " & Match & " 次左右数量追平"
     Else
     End If
-
 
     n = n + 1
 Next
