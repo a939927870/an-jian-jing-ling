@@ -4,7 +4,7 @@
 小于10%的数字，那么就猜这一个或者几个数字，等下一局开奖结果
 出现了，然后再用开出来的结果和上一局押注的几个数字对比。分别记下 
 押注几个，中了几个，如此循环100次，下注一个扣1分，猜中一个得10分 
-，然后计算总得分情况。
+，然后计算总得分情况。 
 总体原理是：每个数字都是平均倾向于10%，当一个数字在一个统计样本数量
 之内，出现概率只有5%时，它下一局出现的概率会大很多。
 */
@@ -23,7 +23,8 @@ rat = 0
 nm = 0
 CountAll = 0//连续循环多少轮后，总的统计
 ho = 0
-For 1000
+BigTimes = 1000 //总共大循环多少次
+For BigTimes
     //每个数字出现的累计次数，0-9
     num = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     //下注的数字标识
@@ -59,7 +60,7 @@ For 1000
             For 10
                 //	Lite = Round((num / n) * 100, 5)
                 Lite = Round((num(x) / n) * 100, 2)
-                If Lite < 5 Then //这个数字这一局的平均出现概率小于5%，因此它是下注对象，标记为1
+                If Lite < 5 Then //这个数字这一局的平均出现概率小于10%，因此它是下注对象，标记为1
                     flag(x) = 100
                     //               TracePrint "这一局的下注对象是" & x & "概率为 = " & Lite & "%"
                     Total = Total + 1
@@ -78,8 +79,8 @@ For 1000
     TracePrint ho
     ho = ho + 1
 Next
-
-TracePrint "100,000次后总的盈利 = "& Round((CountAll / 100), 2) & " %"
+TracePrint "CountAll = " & CountAll 
+TracePrint "100,000次后总的盈利 = "& Round((CountAll / BigTimes), 2) & " %"
 /*
 TracePrint "-----------测试结束！-----------"
 TracePrint "总共下注次数 Total = " & Total
