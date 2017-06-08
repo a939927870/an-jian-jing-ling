@@ -12,28 +12,39 @@ Righttimes = 0	//右边开出次数
 n = 1		//总的统计循环次数，必须从1开始，不然后面有个（num(x) / n），分母为0，会报错
 TotalLeft = 0//左边押注总次数
 TotalRight = 0	//右边押注总次数
-Yes = 0//押中的总次数
+Match = 0		//两者追平的次数
 h = 1//运行了多少次
 
-For 1000
-    d = int(Rnd() * 2)	
-//    TracePrint d
+For 300000
+    d = int(Rnd() * 2)
     
-    If d = 0 Then 
-    	Lefttimes = Lefttimes + 1
-    	Else 
-    	Righttimes = Righttimes + 1
+    //判断当前局出的结果
+    If d = sed(0) Then 
+        Lefttimes = Lefttimes + 1
+    Else 
+        Righttimes = Righttimes + 1
     End If
-    
-    //如果右边比左边多5个以上，就一直压左边，直到左边大于等于右边为止
-    If Righttimes - Lefttimes >= 5 and flag = 1 Then 
-    	flag = 1	//右边比左边多5个，就激活这个flag
+    str = "现在是第 " & n &" 局" & "左边出现次数 = " & Lefttimes & "右边出现次数 = " & Righttimes & "  左边 - 右边 = " &Lefttimes - Righttimes & " 次"
+ // 
+    Call Plugin.File.WriteFileEx("C:\数据输出.txt", str)
+    /**/
+
+    If Righttimes - Lefttimes > 5 Then //如果右边比左边多5个
+        TotalLeft = TotalLeft + 1
+    Elseif Lefttimes - Righttimes > 5 Then //如果左边比右边多5个
+        TotalRight = TotalRight + 1
+    Elseif Lefttimes - Righttimes = 0 Then    
+        Match = Match + 1//两者数量一致，追平了
+        TracePrint "现在是第 " & n & " 局，   第 " & Match & " 次左右数量追平"
+    Else
     End If
-    
-    TotalLeft = TotalLeft + 1
-    
+
+
     n = n + 1
 Next
 
 TracePrint "左边开出 = " & Lefttimes & " 次"
 TracePrint "右边开出 = " & Righttimes & " 次"
+TracePrint "----------------------------------"
+TracePrint "左边押注次数 = " & TotalLeft & " 次"
+TracePrint "右边押注次数 = " & TotalRight & " 次"
