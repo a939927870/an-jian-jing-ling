@@ -20,7 +20,7 @@ Dim RightHub(10000)
 
 Call Plugin.File.DeleteFile("C:\数据输出.txt")
 
-For 300000
+For 50000
     d = int(Rnd() * 2)
     
     //判断当前局出的结果
@@ -52,3 +52,5 @@ TracePrint "右边开出 = " & Righttimes & " 次"
 TracePrint "----------------------------------"
 TracePrint "左边押注次数 = " & TotalLeft & " 次"
 TracePrint "右边押注次数 = " & TotalRight & " 次"
+
+Call RunApp("C:\数据输出.txt")
