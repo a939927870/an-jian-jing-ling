@@ -59,7 +59,7 @@ For 1000
             For 10
                 //	Lite = Round((num / n) * 100, 5)
                 Lite = Round((num(x) / n) * 100, 2)
-                If Lite < 5 Then //这个数字这一局的平均出现概率小于10%，因此它是下注对象，标记为1
+                If Lite < 5 Then //这个数字这一局的平均出现概率小于5%，因此它是下注对象，标记为1
                     flag(x) = 100
                     //               TracePrint "这一局的下注对象是" & x & "概率为 = " & Lite & "%"
                     Total = Total + 1
