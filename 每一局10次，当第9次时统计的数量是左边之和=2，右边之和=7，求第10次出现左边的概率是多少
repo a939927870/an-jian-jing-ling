@@ -1,0 +1,46 @@
+/*每一局10次，当第9次时统计的数量是左边之和=2，右边之和=7，求第10次出现左边的概率是多少*/
+Randomize
+n = 0//总轮数
+Lun = 1000//每隔多少轮，就输出一次轮数
+LunCount = 0	//对于轮数的统计
+AllYes = 0  //所有符合左边 = 2，右边 = 7 的10次循环次数
+Yes = 0		//在ALLYes里，第10次出现左边的次数
+LeftTimes = 0 //左边出现次数
+RightTimes = 0 //右边出现次数
+BigLoop = 1000000//外面大循环1000000次
+For BigLoop 
+    LeftTimes = 0
+    RightTimes = 0
+    For 9 //循环9次
+        d = int(Rnd() * 2)
+        If d = 0 Then 
+            LeftTimes = LeftTimes + 1
+        Else 
+            RightTimes = RightTimes + 1
+        End If	
+    Next
+    //第10次，重点分析出的结果概率
+    If LeftTimes = 2 and RightTimes = 7 Then 
+    	//一轮里，符合9次的指定情况
+        AllYes = AllYes + 1
+        d = int(Rnd() * 2)
+        If d = 0 Then 
+        	//第10次开出了符合条件的结果的次数
+            Yes = Yes + 1
+        End If
+    End If
+    
+    If n mod Lun = 0 Then 
+    	LunCount = LunCount + 1
+    	TracePrint "现在是第 " & LunCount& " X " & Lun & "= " & LunCount& ",000 轮"
+    End If
+    
+    n = n + 1
+Next
+
+TracePrint "所有符合左边 = 2，右边 = 7 的10次循环次数 AllYes =  " & AllYes
+TracePrint "在ALLYes里，第10次出现左边的次数 Yes =  " & Yes
+
+Lite = Round((Yes / AllYes) * 100, 2)
+
+TracePrint "一轮里第10次出现左边的概率 = " & Lite & " %"
