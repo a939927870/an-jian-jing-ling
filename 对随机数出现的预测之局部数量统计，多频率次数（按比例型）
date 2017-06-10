@@ -23,7 +23,8 @@ rat = 0
 nm = 0
 CountAll = 0//连续循环多少轮后，总的统计
 ho = 0
-BigTimes = 1000 //总共大循环多少次
+BigTimes = 10000//总共大循环多少次
+hehe = 0	//rat的总盈利累加值
 For BigTimes
     //每个数字出现的累计次数，0-9
     num = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -72,15 +73,22 @@ For BigTimes
         n = n + 1
     Next
     
-    
     rat = Yes * 10 - Total//盈利
-    nm = Round((rat / Total) * 100, 2)
-    CountAll = CountAll + nm
-    TracePrint ho
+ //   TracePrint "rat = " & rat
+ //   nm = Round((rat / Total) * 100, 2)
+	hehe = hehe + rat
+    
+ //   CountAll = CountAll + nm
+    TracePrint ho & " 次结束"
     ho = ho + 1
 Next
-TracePrint "CountAll = " & CountAll 
-TracePrint "100,000次后总的盈利 = "& Round((CountAll / BigTimes), 2) & " %"
+
+TracePrint "hehe = " & hehe
+
+
+
+//TracePrint "CountAll = " & CountAll 
+//TracePrint "100,000次后总的盈利 = "& Round((CountAll / BigTimes), 2) & " %"
 /*
 TracePrint "-----------测试结束！-----------"
 TracePrint "总共下注次数 Total = " & Total
