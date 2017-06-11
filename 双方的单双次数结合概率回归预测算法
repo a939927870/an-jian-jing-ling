@@ -1,15 +1,15 @@
-
 /*2个随机数自动生成，完全独立随机事件，无限循环下去两者出现的比例无限接近于50%，
 依据这个原理，左右下注统计随机数。对概率回归原理的运用*/
-
 TracePrint "-----------测试开始！-----------"
 Randomize
-
 //左右偏移下注统计，第一个参数有10000个，分别是从0-9999
 //第二个参数有2个，从0-1，
-Dim LeftMove(9999, 0)			//左边偏移次数，10的倍率，注意：按键精灵里LeftMove(9999)是0-9999，一共10000个数据
-Dim RightMove(9999, 0)		//右边偏移次数，10的倍率
-
+//按键精灵数组初始化状态，LeftMove(9999, 0) = 0成立，同时LeftMove(9999, 0)=""也成立
+//既为0，也为空字符串
+Dim LeftMove(9999, 0)//左边偏移次数，10的倍率，注意：按键精灵里LeftMove(9999)是0-9999，一共10000个数据
+LeftTimes = 0 //左边偏移激发次数
+Dim RightMove(9999, 0)//右边偏移次数，10的倍率
+RightTimes = 0 //右边偏移激发次数
 Kindnum = 2//希望出现的数字类型数量,比如抛硬币只希望出现正反两面，那么就是2
 n = 0//统计测试的总次数
 move = 0//左右偏移量，随机数为 0，则 + 1，随机数为 1，则 - 1
@@ -19,7 +19,6 @@ LevelMove = 10//偏移move达到这个值就开始记载
 /**/
 For MaxTimes
     rand = int(Rnd() * Kindnum)
-    
     //对当前累积的偏移次数迭代运算，累加
     If rand = sed(0) Then 
         move = move + 1
@@ -27,39 +26,48 @@ For MaxTimes
         move = move - 1
     End If
     
-    //偏移超过 LevelMove 个就进行判断
-    If move mod LevelMove = 0 Then 
-    	If move > 0 Then //以下注点为准，朝左边偏移
-    		
-    		
-    	End If
-    	
-    	If move < 0 Then //以下注点为准，朝右边偏移
-    	
-    		
-    	End If
-    	
+    //偏移超过 LevelMove 的整数倍个就进行判断
+    If move > 0 Then //以下注点为准，朝左边偏移
+        If move mod LevelMove = 0 Then 
+        	LeftMove(LeftTimes, 0) = 1
+        	LeftTimes = LeftTimes + 1
+        End If
+    ElseIf move < 0 Then //以下注点为准，朝右边偏移
+        If move mod LevelMove = 0 Then 
+        
+        
+        End If
+    Else 
     End If
     
+    /*
+    //偏移超过 LevelMove 的整数倍个就进行判断
+    If move mod LevelMove = 0 Then 
+        If move > 0 Then //以下注点为准，朝左边偏移
+        End If
+        If move < 0 Then //以下注点为准，朝右边偏移
+        End If
+    End If
+ */
     
     n = n + 1
 Next
-
+   
+   
 /*
 LeftMove(0, 0) = 2
-LeftMove(0,1) = 5
 TracePrint LeftMove(0, 0)
-TracePrint LeftMove(0, 1)
 
 Dim A(3, 0)
-A(2, 0) = 3
-TracePrint A(2, 0)
+If A(1, 0) = 0 and A(1, 0) = "" Then 
+	TracePrint "毛线"
+End If
+//TracePrint A(2, 0)
 */
 /*
 move = -100 
 LevelMove = 10
     If move mod LevelMove = 0 Then 
-    	
     	TracePrint "yes"
 d    End If
 */
