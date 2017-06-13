@@ -48,6 +48,13 @@ For MaxTimes
             End If
         End If
     End If
+    
+    /*
+    If n mod 10000 = 0 Then 
+    	TracePrint "现在是第 " & n & " 局"
+    End If 
+    */
+    
     n = n + 1
 Next
 TracePrint "当前结束后偏移量 move = " & move
