@@ -14,7 +14,7 @@ Kindnum = 2//希望出现的数字类型数量,比如抛硬币只希望出现正
 n = 0//统计测试的总次数
 move = 0//左右偏移量，随机数为 0，则 + 1，随机数为 1，则 - 1
 sed = Array(0, 1)//出现的可能数字情况0或者1
-MaxTimes = 100000//准备循环测试的最大次数
+MaxTimes = 1000000//准备循环测试的最大次数
 LevelMove = 10//偏移move达到这个值就开始记载
 MaxLetfLevel = 0//左边最大偏移等级
 MaxRightLevel = 0//右边最大偏移等级
@@ -50,12 +50,11 @@ Next
 TracePrint "move 总偏移量 = " & move
 TracePrint "MaxLetfLevel  = " & MaxLetfLevel
 TracePrint "MaxRightLevel = " & MaxRightLevel
-//Win = 
-TracePrint "总赚的分 = "
-
-
-
-
+//计算最终赢的次数，按照每一局下注一分计算
+WinLeft = (((1 + MaxLetfLevel) * MaxLetfLevel) / 2) * LevelMove - MaxLetfLevel *  LevelMove
+WinRight = (((1 + MaxRightLevel) * MaxRightLevel) / 2) * LevelMove - MaxRightLevel * LevelMove
+Win = WinLeft + WinRight
+TracePrint "总赚的分 = " & Win
 /*
 LeftMove(0, 0) = 2
 TracePrint LeftMove(0, 0)
