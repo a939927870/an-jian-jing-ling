@@ -15,7 +15,7 @@ n = 0//统计测试的总次数
 move = 0//左右偏移量，随机数为 0，则 + 1，随机数为 1，则 - 1
 sed = Array(0, 1)//出现的可能数字情况0或者1
 MaxTimes = 1000//准备循环测试的最大次数
-LevelMove = 5//偏移move达到这个值就开始记载
+LevelMove = 10//偏移move达到这个值就开始记载
 MaxLetfLevel = 0//左边最大偏移等级
 MaxRightLevel = 0//右边最大偏移等级
 /**/
