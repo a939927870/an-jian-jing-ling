@@ -1,4 +1,14 @@
 //定义牌的基本信息
 NumCard = 54  		//总的牌数量
 QueenCard = 3		//底牌3张
-EveyOneCardNum = 17	//每个人的牌初始数量
+EveyOneCardNum = 17//每个人的牌初始数量
+ImBoss = False//判断我是不是地主
+//********我是地主***********
+ImBossTurnMe = False//我是地主轮到我出牌
+ImBossTurnFamer1 = False//我是地主轮到第一个农民出牌
+ImBossTurnFamer2 = False//我是地主轮到第二个农民出牌
+//********我是农民***********
+ImFarmerTurnMe = False//我是农民轮到我出牌
+ImFarmerTurnBoss = False//我是农民轮到地主出牌
+ImFarmerTurnLastFamer = False//我是农民轮到另一个农民出牌
+
