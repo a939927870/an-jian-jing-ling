@@ -16,7 +16,13 @@ Rocket = False//是否还有火箭
 BigQueen = 0//大王数量
 SmallQueen = 0//小王数量
 IsLeastBomb = False//是否还有炸弹
-
+//记牌器
+Dim CardCount(3, 12)//2-A，4种颜色，每一种13张牌。红黑梅方，没有大王小王
+Queen = 2 //大小王初始化2张
+//3个人每个人剩余的牌
+BossLeastCardNum = 20//地主剩余牌的数量
+Famer1_LeastCardNum = 17//农民一剩余牌的数量
+Famer2_LeastCardNum = 17//农民二剩余牌的数量
 
 
 
