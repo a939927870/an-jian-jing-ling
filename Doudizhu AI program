@@ -1,0 +1,4 @@
+//定义牌的基本信息
+NumCard = 54  		//总的牌数量
+QueenCard = 3		//底牌3张
+EveyOneCardNum = 17	//每个人的牌初始数量
