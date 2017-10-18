@@ -15,5 +15,9 @@ ImFarmerTurnLastFamer = False//我是农民轮到另一个农民出牌
 Rocket = False//是否还有火箭
 BigQueen = 0//大王数量
 SmallQueen = 0//小王数量
-IsBomb = False//是否还有炸弹
+IsLeastBomb = False//是否还有炸弹
+
+
+
+
 
