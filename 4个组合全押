@@ -8,43 +8,39 @@ Count = 0//统计运行次数
 WinCount = 1000//总的金币数量
 RandMoney = 0 //每一局随机的下注金额
 BuyOne = 10//每次下注数量
-Rant = 4.4//小单大双中了的赔率
-
-For 1
+Rant = 4.6//小单大双中了的赔率
+For MaxLoop
     rand = int(Rnd() * Kindnum)
-    rand = 14
     RandMoney = int(Rnd() * 6) * 10 + 10
-//    BuyOne = RandMoney
+    //    BuyOne = RandMoney
     WinCount = WinCount - BuyOne * 4//每次下注扣 BytOne 金币
-    
     //小单
     If rand < 14 and rand mod 2 <> 0 and rand <> 13 Then 
         WinCount = WinCount + BuyOne * Rant
     ElseIf rand = 13 Then
-    	WinCount = WinCount + BuyOne //回本
+        WinCount = WinCount + BuyOne //回本
     Else 
-
-    	WinCount = WinCount + 0
+        WinCount = WinCount + 0
     End If
     //小双
-        If rand < 14 and rand mod 2 = 0 Then 
+    If rand < 14 and rand mod 2 = 0 Then 
         WinCount = WinCount + BuyOne * 4.2
     Else 
-    	WinCount = WinCount + 0
+        WinCount = WinCount + 0
     End If
     //大单
-        If rand > 13 and rand mod 2 <> 0 Then 
+    If rand > 13 and rand mod 2 <> 0 Then 
         WinCount = WinCount + BuyOne * 4.2
     Else 
-    	WinCount = WinCount + 0
+        WinCount = WinCount + 0
     End If
     //大双
-        If rand > 13 and rand mod 2 = 0 and rand <> 14 Then 
+    If rand > 13 and rand mod 2 = 0 and rand <> 14 Then 
         WinCount = WinCount + BuyOne * Rant
     ElseIf rand = 14 Then
-    	WinCount = WinCount + BuyOne //回本
+        WinCount = WinCount + BuyOne //回本
     Else 
-    	WinCount = WinCount + 0
+        WinCount = WinCount + 0
     End If
     TracePrint "第"&Count&"局  下注额  = "& BuyOne * 4  &"  现在身上的钱 = "& WinCount & "这把是 = " & rand
     Count = Count + 1
