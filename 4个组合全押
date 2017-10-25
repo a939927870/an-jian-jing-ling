@@ -1,0 +1,54 @@
+//小单，大双的算法
+TracePrint "-----------测试开始！-----------"
+Randomize
+MaxLoop = 9600//最多运行次数,PC蛋蛋5分钟一把，一天8小时，可以搞96把
+Kindnum = 28//
+StartNum = 0//初始化数值随机数要保持在0左右摆动
+Count = 0//统计运行次数
+WinCount = 1000//总的金币数量
+RandMoney = 0 //每一局随机的下注金额
+BuyOne = 10//每次下注数量
+Rant = 4.4//小单大双中了的赔率
+
+For MaxLoop
+    rand = int(Rnd() * Kindnum)
+    RandMoney = int(Rnd() * 6) * 10 + 10
+//    BuyOne = RandMoney
+    WinCount = WinCount - BuyOne * 4 //每次下注扣 BytOne 金币
+    //小单
+    If rand < 14 and rand mod 2 <> 0 Then 
+        WinCount = WinCount + BuyOne * Rant
+    ElseIf rand = 13 Then
+    	WinCount = WinCount + BuyOne //回本
+    Else 
+    	WinCount = WinCount + 0
+    End If
+    //小双
+        If rand < 14 and rand mod 2 = 0 Then 
+        WinCount = WinCount + BuyOne * 4.2
+    ElseIf rand = 13 Then
+    	WinCount = WinCount + BuyOne //回本
+    Else 
+    	WinCount = WinCount + 0
+    End If
+    //大单
+        If rand > 13 and rand mod 2 <> 0 Then 
+        WinCount = WinCount + BuyOne * 4.2
+    ElseIf rand = 13 Then
+    	WinCount = WinCount + BuyOne //回本
+    Else 
+    	WinCount = WinCount + 0
+    End If
+    //大双
+        If rand > 13 and rand mod 2 = 0 Then 
+        WinCount = WinCount + BuyOne * Rant
+    ElseIf rand = 13 Then
+    	WinCount = WinCount + BuyOne //回本
+    Else 
+    	WinCount = WinCount + 0
+    End If
+    TracePrint "第"&Count&"局  下注额  = "& BuyOne  &"  现在身上的钱 = "& WinCount
+    Count = Count + 1
+Next
+//TracePrint "总共运行" & Count & "次，符合条件的偏移次数 = " & RightCount & "次"
+TracePrint WinCount
