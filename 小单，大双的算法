@@ -23,7 +23,7 @@ For MaxLoop
     Else 
     	WinCount = WinCount + 0
     End If
-//    TracePrint "第"&Count&"局  下注额  = "& BuyOne  &"  现在身上的钱 = "& WinCount
+//    TracePrint "第"&Count&"局  下注额  = "& BuyOne  &"  现在身上的钱 = "& WinCount & "这把是 = " & rand
     Count = Count + 1
 Next
 //TracePrint "总共运行" & Count & "次，符合条件的偏移次数 = " & RightCount & "次"
