@@ -1,13 +1,13 @@
 //小单，大双的算法
 TracePrint "-----------测试开始！-----------"
 Randomize
-MaxLoop = 100//最多运行次数
+MaxLoop = 10000//最多运行次数
 Kindnum = 28//
 StartNum = 0//初始化数值随机数要保持在0左右摆动
 Count = 0//统计运行次数
-WinCount = 100//总的金币数量
-BuyOne = 1//每次下注金币数
-Rant = 4.6//小单大双中了的赔率
+WinCount = 1000//总的金币数量
+BuyOne = 10//每次下注数量
+Rant = 4.4//小单大双中了的赔率
 
 For MaxLoop
     rand = int(Rnd() * Kindnum)
@@ -21,7 +21,8 @@ For MaxLoop
     	WinCount = WinCount + BuyOne //回本
     Else 
     	WinCount = WinCount + 0
-    End If 
+    End If
+    TracePrint "第"&Count&"局，  现在身上的钱 = "& WinCount
     Count = Count + 1
 Next
 //TracePrint "总共运行" & Count & "次，符合条件的偏移次数 = " & RightCount & "次"
