@@ -1,0 +1,28 @@
+//徘徊算法
+TracePrint "-----------测试开始！-----------"
+Randomize
+MaxLoop = 10//最多运行次数
+MaxSwing = 1//最大左右摆动振幅
+Kindnum = 2//希望出现的数字类型数量,比如抛硬币只希望出现正反两面，那么就是2
+StartNum = 0//初始化数值随机数要保持在0左右摆动
+Count = 0//统计运行次数
+RightCount = 0//统计符合条件的摆动次数
+LastStartNum = 0 //保存的上一次运算得出的StartNum 值
+For 1
+    For MaxLoop
+        rand = int(Rnd() * Kindnum)
+        If rand = 0 Then //rang为0，左摆动
+            StartNum = StartNum + 1
+        Else //rang为1，右摆动
+            StartNum = StartNum - 1
+        End If
+        	TracePrint "StartNum = " & StartNum & "  Count = " & Count
+        If LastStartNum <> 0 and StartNum = 0 Then //上一次保存的StartNum值不是0，而这一次是0，就说明摆动回来了
+            RightCount = RightCount + 1
+           	TracePrint "第 " & Count & "次出现了回归值，当前累计回归值总数 = "& RightCount
+        End If 
+        LastStartNum = LastStartNum + StartNum
+        Count = Count + 1
+    Next
+Next
+TracePrint "总共运行" & Count & "次，符合条件的偏移次数 = " & RightCount & "次"
