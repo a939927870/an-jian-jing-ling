@@ -1,0 +1,28 @@
+//小单，大双的算法
+TracePrint "-----------测试开始！-----------"
+Randomize
+MaxLoop = 100//最多运行次数
+Kindnum = 28//
+StartNum = 0//初始化数值随机数要保持在0左右摆动
+Count = 0//统计运行次数
+WinCount = 100//总的金币数量
+BuyOne = 1//每次下注金币数
+Rant = 4.6//小单大双中了的赔率
+
+For MaxLoop
+    rand = int(Rnd() * Kindnum)
+    //	TracePrint rand
+    //    TracePrint "StartNum = " & StartNum & "  Count = " & Count
+    WinCount = WinCount - BuyOne //每次下注扣 BytOne 金币
+    //小单
+    If rand < 14 and rand mod 2 = 0 Then 
+        WinCount = WinCount + BuyOne * Rant
+    ElseIf rand = 13 Then
+    	WinCount = WinCount + BuyOne //回本
+    Else 
+    	WinCount = WinCount + 0
+    End If 
+    Count = Count + 1
+Next
+//TracePrint "总共运行" & Count & "次，符合条件的偏移次数 = " & RightCount & "次"
+TracePrint WinCount
