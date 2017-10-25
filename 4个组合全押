@@ -1,14 +1,14 @@
 //小单，大双的算法
 TracePrint "-----------测试开始！-----------"
 Randomize
-MaxLoop = 96//最多运行次数,PC蛋蛋5分钟一把，一天8小时，可以搞96把
+MaxLoop = 960//最多运行次数,PC蛋蛋5分钟一把，一天8小时，可以搞96把
 Kindnum = 28//
 StartNum = 0//初始化数值随机数要保持在0左右摆动
 Count = 0//统计运行次数
 WinCount = 1000//总的金币数量
 RandMoney = 0 //每一局随机的下注金额
 BuyOne = 10//每次下注数量
-Rant = 4.6//小单大双中了的赔率
+Rant = 4.4//小单大双中了的赔率
 For MaxLoop
     rand = int(Rnd() * Kindnum)
     RandMoney = int(Rnd() * 6) * 10 + 10
