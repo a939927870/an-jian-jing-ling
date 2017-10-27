@@ -1,0 +1,20 @@
+Randomize
+MaxLoop = 12 * 8//5分钟一盘，一小时12盘
+DelayTime = 1000 * 60 * 5 
+For MaxLoop
+	Delay 100
+//	MoveTo 482, 902
+    Delay 100
+    LeftClick 1
+    Delay 100
+    rand = int(Rnd() * 2)
+    If rand = 0 Then 
+        SayString "100小双"
+    Else 
+        SayString "100大单"
+    End If
+    Delay 100
+    KeyPress "Enter", 1
+    Delay 100
+    Delay DelayTime
+Next
