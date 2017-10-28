@@ -1,0 +1,43 @@
+//小单，小双收益比较算法
+TracePrint "-----------测试开始！-----------"
+Randomize
+MaxLoop = 960000//最多运行次数,PC蛋蛋5分钟一把，一天8小时，可以搞96把
+Kindnum = 28//
+StartNum = 0//初始化数值随机数要保持在0左右摆动
+Count = 0//统计运行次数
+WinCount_46 = 1000//总的金币数量
+WinCount_42 = 1000
+RandMoney = 0 //每一局随机的下注金额
+BuyOne = 10//每次下注数量
+Rant46 = 4.6//小单大双中了的赔率
+Rant42 = 4.2//小双大单中了的赔率
+
+For MaxLoop
+    rand = int(Rnd() * Kindnum)
+    RandMoney = int(Rnd() * 6) * 10 + 10
+//    BuyOne = RandMoney
+    //小单
+    WinCount_46 = WinCount_46 - BuyOne//每次下注扣 BytOne 金币
+    
+    If rand < 14 and rand mod 2 <> 0 and rand <> 13 Then 
+        WinCount_46 = WinCount_46 + BuyOne * Rant46
+    ElseIf rand = 13 Then
+    	WinCount_46 = WinCount_46 + BuyOne //回本
+    Else 
+    	WinCount_46 = WinCount_46 + 0
+    End If
+    //小双
+    WinCount_42 = WinCount_42 - BuyOne //每次下注扣 BytOne 金币
+
+    If rand < 14 and rand mod 2 = 0 Then 
+        WinCount_42 = WinCount_42 + BuyOne * Rant42
+    Else 
+    	WinCount_42 = WinCount_42 + 0
+End If
+    
+//    TracePrint "第"&Count&"局  下注额  = "& BuyOne  &"  现在身上的钱 = "& WinCount & "这把是 = " & rand
+    Count = Count + 1
+Next
+//TracePrint "总共运行" & Count & "次，符合条件的偏移次数 = " & RightCount & "次"
+TracePrint "4.6倍的总盈利 = " & WinCount_46
+TracePrint "4.2倍的总盈利 = " & WinCount_42
