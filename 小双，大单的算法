@@ -15,7 +15,7 @@ For MaxLoop
     RandMoney = int(Rnd() * 6) * 10 + 10
 //    BuyOne = RandMoney
     WinCount = WinCount - BuyOne //每次下注扣 BytOne 金币
-    //小单
+    //小双
     If rand < 14 and rand mod 2 = 0 Then 
         WinCount = WinCount + BuyOne * Rant
     Else 
