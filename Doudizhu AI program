@@ -24,6 +24,28 @@ BossLeastCardNum = 20//地主剩余牌的数量
 Famer1_LeastCardNum = 17//农民一剩余牌的数量
 Famer2_LeastCardNum = 17//农民二剩余牌的数量
 
+//当3个人里有一个人的牌数量为0，则停止循环
+While (BossLeastCardNum <> 0 or Famer1_LeastCardNum <> 0 or Famer2_LeastCardNum <> 0)
+	
+Wend
+
+//推测玩家牌型，百度搜“斗地主猜牌”，寻找经验
+Function GuessPoke()
+	
+End Function
+
+//根据推测的牌来出牌
+Function PlayCard()
+	
+End Function
+
+//识别牌型
+Function ReadPoke()
+	
+End Function
+
+
+
 
 
 
