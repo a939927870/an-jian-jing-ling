@@ -1,9 +1,18 @@
+//创建时间：2017.10.30 14:50
+//进入VPS后，分辨率调整为：1024 * 768
+//VNC设置，颜色级别选择全部，缩放选择，不缩放。
+//QQ选择，请勿打扰模式，以免别人弹窗出来。
+//装Adsafe软件，把系统所有的广告弹窗都过滤掉。
 Randomize
 MaxLoop = 12 * 8//5分钟一盘，一小时12盘
-DelayTime = 1000 * 60 * 5 
+//DelayTime = 1000 * 60 * 5
+DelayTime = 1000 * 3
+OnePay = 100//当前下注分数
+
 For MaxLoop
-	Delay 100
-//	MoveTo 482, 902
+    Delay 100
+    //	MoveTo 482, 902
+    MoveTo 164, 618
     Delay 100
     LeftClick 1
     Delay 100
@@ -18,3 +27,9 @@ For MaxLoop
     Delay 100
     Delay DelayTime
 Next
+
+//获取当前下注后，还没开奖这段时间的分数值
+Function GetScore(i)
+
+	GetScore = 100
+End Function
