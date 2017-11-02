@@ -1,0 +1,59 @@
+//小双，大单修正随机数，加上连中奖励算法
+TracePrint "-----------测试开始！-----------"
+Randomize
+MaxLoop = 960000//最多运行次数,PC蛋蛋5分钟一把，一天8小时，可以搞96把
+Kindnum = 10//
+StartNum = 0//初始化数值随机数要保持在0左右摆动
+Count = 0//统计运行次数
+WinCount = 10000//总的金币数量
+RandMoney = 0 //每一局随机的下注金额
+BuyOne = 100//每次下注数量
+Rant = 4.2//小双，大单中了的赔率
+//连续压中组合奖励金额
+Award_3 = 118
+Award_4 = 258
+Award_5 = 588
+Award_8 = 888
+//连续中的累积次数
+SameN = 0
+For MaxLoop
+    rand_1 = int(Rnd() * Kindnum)
+    rand_2 = int(Rnd() * Kindnum)
+    rand_3 = int(Rnd() * Kindnum)
+    rand = rand_1 + rand_2 + rand_3
+    WinCount = WinCount - BuyOne //每次下注扣 BytOne 金币
+    //小双
+    If rand < 14 and rand mod 2 = 0 Then 
+        WinCount = WinCount + BuyOne * Rant
+        //       TracePrint "第"&Count&"局  下注额  = "& BuyOne  &"  现在身上的钱 = "& WinCount & "这把是 = " & rand & "中了-------------------------------------- "
+        SameN = SameN + 1
+    Else 
+        WinCount = WinCount + 0
+        //      TracePrint "第"&Count&"局  下注额  = "& BuyOne  &"  现在身上的钱 = "& WinCount & "这把是 = " & rand & "没中 "
+        SameN = 0
+    End If
+    //连续打中组合得到的奖励
+    If SameN = 3 Then 
+        WinCount = WinCount + Award_3
+        SameN = 0
+    ElseIf SameN = 4 Then
+        WinCount = WinCount + Award_4
+        SameN = 0
+    ElseIf SameN = 5 Then
+        WinCount = WinCount + Award_5
+        SameN = 0
+    ElseIf SameN = 8 Then
+        WinCount = WinCount + Award_8
+        SameN = 0
+    Else 
+        WinCount = WinCount
+    End If
+    Count = Count + 1
+Next
+//TracePrint "总共运行" & Count & "次，符合条件的偏移次数 = " & RightCount & "次"
+TracePrint WinCount
+
+/*********
+小双，大单修正随机数，加上连中奖励算法
+运算结果 = -1762918
+****/
