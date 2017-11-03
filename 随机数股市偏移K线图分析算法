@@ -1,39 +1,31 @@
 //随机数股市偏移K线图分析算法
 //最好装WPS，有些网吧电脑的Excel软件，按键精灵无法读写数据，Call Plugin.Office.WriteXls 这个函数运行会报错
+//要结合1024907060微云保存的《测试 - C盘标准测试随机数文档.xls》，来做分析，用WPS或者Excel里的插入->散点图工具，看趋势走向
 Randomize
-MaxLoop = 100 * 100 * 100//最多运行次数
+MaxLoop = 20000//最多运行次数
 Kindnum = 2
 Count = 0//统计运行次数
 Times = 0//偏移情况次数
-Average_5 = 0 //平均5次偏移的数值
-Average_10 = 0//平均5次偏移的数值
-Average_30 = 0//平均5次偏移的数值
-Average_100 = 0//平均5次偏移的数值
-//Call Plugin.Office.OpenXls("C:\测试.xls")
-Call Plugin.File.WriteFileEx("C:\Log.txt", a1)
-//fileHandle = Plugin.File.OpenFile("C:\测试.txt")
-
+Average_5 = 0 //平均5次的偏移平均值
+Average_10 = 0//平均10次的偏移平均值
+Average_30 = 0//平均30次的偏移平均值
+Average_100 = 0//平均100次的偏移平均值
+Call Plugin.Office.OpenXls("C:\测试.xls")
 For MaxLoop
     rand = int(Rnd() * Kindnum)
-    
     If rand = 0 Then 
-    	Times = Times + 1 //朝左偏移+1
-    	Else 
-    	Times = Times - 1 //朝右偏移-1
+        Times = Times + 1 //朝左偏移+1
+    Else 
+        Times = Times - 1 //朝右偏移-1
     End If
-    
-	text = CStr(Times)
-
-	Call Plugin.File.WriteFileEx("C:\测试.txt", Times)
-
-
-    
+    text = CStr(Times)
+    //	Call Plugin.File.WriteFileEx("C:\测试.txt", Times)
+    Call Plugin.Office.WriteXls(1, Count + 1, 1, Times) //写入每次偏移值
     Count = Count + 1
-//    TracePrint Count
+    //    TracePrint Count
 Next
-
-//Call Plugin.File.CloseFile(fileHandle)  
-//Call Plugin.Office.CloseXls()
+Call Plugin.Office.CloseXls()
 TracePrint "运行结束，总共运行了 = " & MaxLoop & " 次"
-
-
+//平均函数
+Function Average_X(i)
+End Function
