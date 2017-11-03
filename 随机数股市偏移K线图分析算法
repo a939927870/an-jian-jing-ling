@@ -13,6 +13,11 @@ Average_100 = 0//平均5次偏移的数值
 For MaxLoop
     rand = int(Rnd() * Kindnum)
     
+    If rand = 0 Then 
+    	Times = Times + 1 //朝左偏移+1
+    	Else 
+    	Times = Times - 1 //朝右偏移-1
+    End If
 
     
     Count = Count + 1
