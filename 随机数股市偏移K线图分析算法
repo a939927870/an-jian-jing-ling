@@ -1,0 +1,24 @@
+//随机数股市偏移K线图分析算法
+Randomize
+MaxLoop = 1000//最多运行次数
+Kindnum = 2
+Count = 0//统计运行次数
+Times = 0//偏移情况次数
+Average_5 = 0 //平均5次偏移的数值
+Average_10 = 0//平均5次偏移的数值
+Average_30 = 0//平均5次偏移的数值
+Average_100 = 0//平均5次偏移的数值
+
+
+For MaxLoop
+    rand = int(Rnd() * Kindnum)
+    
+
+    
+    Count = Count + 1
+    TracePrint Count
+Next
+
+TracePrint "运行结束，总共运行了 = " & MaxLoop & " 次， 回归次数 = " & BackTimes & " 次"
+
+
