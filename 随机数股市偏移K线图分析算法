@@ -9,7 +9,9 @@ Average_5 = 0 //平均5次偏移的数值
 Average_10 = 0//平均5次偏移的数值
 Average_30 = 0//平均5次偏移的数值
 Average_100 = 0//平均5次偏移的数值
-Call Plugin.Office.OpenXls("C:\测试.xls")
+//Call Plugin.Office.OpenXls("C:\测试.xls")
+Call Plugin.File.WriteFileEx("C:\Log.txt", a1)
+//fileHandle = Plugin.File.OpenFile("C:\测试.txt")
 
 For MaxLoop
     rand = int(Rnd() * Kindnum)
@@ -21,7 +23,8 @@ For MaxLoop
     End If
     
 	text = CStr(Times)
-	Call Plugin.Office.WriteXls(1, Count + 1, 1, Times)
+
+	Call Plugin.File.WriteFileEx("C:\测试.txt", Times)
 
 
     
@@ -29,7 +32,8 @@ For MaxLoop
 //    TracePrint Count
 Next
 
-Call Plugin.Office.CloseXls()
+//Call Plugin.File.CloseFile(fileHandle)  
+//Call Plugin.Office.CloseXls()
 TracePrint "运行结束，总共运行了 = " & MaxLoop & " 次"
 
 
