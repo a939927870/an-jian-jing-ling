@@ -2,7 +2,7 @@
 //最好装WPS，有些网吧电脑的Excel软件，按键精灵无法读写数据，Call Plugin.Office.WriteXls 这个函数运行会报错
 //要结合1024907060微云保存的《测试 - C盘标准测试随机数文档.xls》，来做分析，用WPS或者Excel里的插入->散点图工具，看趋势走向
 Randomize
-MaxLoop = 20000//最多运行次数
+MaxLoop = 2500//最多运行次数
 Kindnum = 2
 Count = 0//统计运行次数
 Times = 0//偏移情况次数
