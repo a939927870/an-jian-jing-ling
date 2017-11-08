@@ -20,7 +20,7 @@ For MaxLoop
     End If
     text = CStr(Times)
     //	Call Plugin.File.WriteFileEx("C:\测试.txt", Times)
-    Call Plugin.Office.WriteXls(1, Count + 1, 1, Times) //写入每次偏移值
+    Call Plugin.Office.WriteXls(1, Count + 1, 2, Times) //写入每次偏移值
     Count = Count + 1
     //    TracePrint Count
 Next
