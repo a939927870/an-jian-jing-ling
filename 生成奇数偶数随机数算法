@@ -1,0 +1,22 @@
+Randomize
+MaxLoop = 2100//最多运行次数
+Kindnum = 28
+Times = 0//偏移情况次数
+Call Plugin.Office.OpenXls("C:\测试.xls")
+n = 0 //当前循环次数
+
+For MaxLoop
+	rand = int(Rnd() * Kindnum)
+	If rand mod 2 = 0 Then 
+        Times = Times + 1 //朝左偏移+1
+    Else 
+        Times = Times - 1 //朝右偏移-1
+    End If
+    
+ //   Call Plugin.Office.WriteXls(1, n + 1, 1, n + 1)
+    Call Plugin.Office.WriteXls(1, n + 1, 2, Times)//写入每次偏移值，从Excel的B列开始写入
+    
+    n = n + 1
+Next
+
+TracePrint "结束"
