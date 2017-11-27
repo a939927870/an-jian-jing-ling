@@ -1,2 +1,47 @@
 //统计网站www.dandan29.com
 //操作系统：windows 7 X64 分辨率：1920X1080 浏览器：Firefox Quantum 57.0(64位) 
+//正确结果查找领域
+fx1 = 1334 
+fy1 = 327
+fx2 = 1429
+fy2 = 1012
+SearchY = 32//搜索一次结果的Y像素高度
+SearchX = 88 //搜索一次结果的X像素宽度
+LoopTimes = 1//查找次数
+SmallLoop = 20//一个页面循环查找次数
+n = 1
+For LoopTimes
+ //   num = Search(fx1, fy1, fx2, fy2)
+    num = Search(0, 0, 1920, 1080)
+    TracePrint num
+Next
+Function Search(a, b, c, d)
+    //总的正确数字
+    Search = 0
+    c = 0
+    For SmallLoop
+        //对
+        FindPic a, b, c, d, "Attachment:\灰对.bmp", 0.9, intX1, intY1
+        FindPic a, b, c, d, "Attachment:\白对.bmp", 0.9, intX2, intY2
+        //错	
+        FindPic a, b, c, d, "Attachment:\灰错.bmp", 0.9, intX3, intY3
+        FindPic a, b, c, d, "Attachment:\白错.bmp", 0.9, intX4, intY4
+        TracePrint "-------第 " & c + 1 & " 次结果-------"
+        //如果对
+        If intX1 > 0 Then 
+            TracePrint "灰对"
+        End If
+        If intX2 > 0 Then 
+            TracePrint "白对"
+        End If
+        If intX3 > 0 Then 
+            TracePrint "灰错"
+        End If
+        If intX4 > 0 Then 
+            TracePrint "白错"
+        End If
+    //    b = b + SearchY
+        TracePrint "-------------------------"
+        c = c + 1
+    Next
+End Function
