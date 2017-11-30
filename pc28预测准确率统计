@@ -1,47 +1,63 @@
 //统计网站www.dandan29.com
 //操作系统：windows 7 X64 分辨率：1920X1080 浏览器：Firefox Quantum 57.0(64位) 
-//正确结果查找领域
-fx1 = 1334 
-fy1 = 327
-fx2 = 1429
-fy2 = 1012
-SearchY = 32//搜索一次结果的Y像素高度
-SearchX = 88 //搜索一次结果的X像素宽度
-LoopTimes = 1//查找次数
-SmallLoop = 20//一个页面循环查找次数
-n = 1
-For LoopTimes
- //   num = Search(fx1, fy1, fx2, fy2)
-    num = Search(0, 0, 1920, 1080)
-    TracePrint num
+dx = 32  //一个行的高度像素
+x1 = 1348 
+y1 = 159
+x2 = 1418
+y2 = 191
+Result = "Erro"
+count = 0 //一次统计的正确值
+n = 0
+All = 0 //累计统计的正确值
+ReadN = 0
+
+//网页下翻
+MoveTo 204, 346
+For 5
+	Delay 10
+	MouseWheel -1
 Next
-Function Search(a, b, c, d)
-    //总的正确数字
-    Search = 0
-    c = 0
-    For SmallLoop
-        //对
-        FindPic a, b, c, d, "Attachment:\灰对.bmp", 0.9, intX1, intY1
-        FindPic a, b, c, d, "Attachment:\白对.bmp", 0.9, intX2, intY2
-        //错	
-        FindPic a, b, c, d, "Attachment:\灰错.bmp", 0.9, intX3, intY3
-        FindPic a, b, c, d, "Attachment:\白错.bmp", 0.9, intX4, intY4
-        TracePrint "-------第 " & c + 1 & " 次结果-------"
-        //如果对
-        If intX1 > 0 Then 
-            TracePrint "灰对"
+
+Delay 500
+
+//从文本读取累计的数据信息
+ReadNum = Plugin.File.ReadINI("Command", "Val", "C:\Config.ini")
+ReadN = Plugin.File.ReadINI("Command", "n", "C:\Config.ini")
+
+For 20
+    If n mod 2 = 0 Then //偶数就是灰色栏
+        FindPic x1,y1 + dx * n,x2,y2 + dx * n,"Attachment:\灰对.bmp",0.9,intX,intY
+        If intX > 0 And intY > 0 Then 
+            TracePrint "Yes"
+            count = count + 1
+        Else 
+            TracePrint "No"
         End If
-        If intX2 > 0 Then 
-            TracePrint "白对"
+    Else 
+        FindPic x1,y1 + dx * n,x2,y2 + dx * n,"Attachment:\白对.bmp",0.9,intX,intY
+        If intX > 0 And intY > 0 Then 
+            TracePrint "Yes"
+            count = count + 1
+        Else 
+            TracePrint "No"
         End If
-        If intX3 > 0 Then 
-            TracePrint "灰错"
-        End If
-        If intX4 > 0 Then 
-            TracePrint "白错"
-        End If
-    //    b = b + SearchY
-        TracePrint "-------------------------"
-        c = c + 1
-    Next
-End Function
+    End If
+    n = n + 1
+Next
+
+ReadNum = ReadNum + count
+ReadN = ReadN + 1
+//读取的正确值数据写入文本
+Call Plugin.File.WriteINI("Command", "Val", ReadNum, "C:\Config.ini")
+Call Plugin.File.WriteINI("Command", "n", ReadN, "C:\Config.ini")
+
+TracePrint "count = " & count
+TracePrint "n = " & n
+TracePrint "All = " & ReadNum
+
+//鼠标移动到下页附近位置
+MoveTo 1043, 840
+Delay 200
+LeftClick 1
+Delay 20
+
